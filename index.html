@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Client Portal · Northwind Advisory Group</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="static/style.css">
+<link rel="stylesheet" href="static/glass.css">
+<link rel="stylesheet" href="static/demo/demo.css">
+</head>
+<body class="glass">
+<div class="demo-bar" role="navigation" aria-label="Demo">
+  <span class="demo-tag">Front-end demo</span>
+  <div class="demo-seg"><a href="index.html" class="on">Client Portal</a><a href="admin.html" class="">Admin Portal</a></div>
+  <button type="button" id="demoReset" class="demo-reset">Reset demo data</button>
+</div>
+
+<header class="top ">
+  <div class="lg-scene" aria-hidden="true"></div>
+  <div class="wrap bar">
+    <a class="logo" href="index.html" aria-label="Northwind Advisory Group, Client Portal home">
+      
+      <b>Northwind</b><small>ADVISORY GROUP</small>
+    </a>
+    <nav aria-label="Header">
+      
+        
+        <span class="user-chip">
+          <span class="avatar" aria-hidden="true">S</span>
+          <span class="nm"><span data-demo="name">Sameer Khan</span><small>sameer@greenleafbakery.com</small></span>
+        </span>
+        <a class="signout" href="signin.html">Sign out</a>
+      
+    </nav>
+  </div>
+  <div class="wrap hero">
+    
+  <div id="signAlert" class="sign-alert" hidden></div>
+  <div class="hero-card">
+  <p class="kicker" data-demo="company">Greenleaf Bakery LLC</p>
+  <h1 class="welcome">Welcome, <b data-demo="name">Sameer Khan</b></h1>
+  <p class="sub">Access your service folders, share documents with our team, and connect to the software and tools available through your account.</p>
+  <button type="button" class="hero-btn" id="reqAccessBtn" hidden>
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="4"/><path d="M2 21c1.2-3.6 4-5.5 7-5.5s5.8 1.9 7 5.5"/><path d="M19 8v6M16 11h6"/></svg>
+    Request Member Access</button>
+  <button type="button" class="hero-btn" id="reqRemoveBtn" hidden>
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="4"/><path d="M2 21c1.2-3.6 4-5.5 7-5.5s5.8 1.9 7 5.5"/><path d="M16 11h6"/></svg>
+    Remove Member Access</button>
+  </div>
+
+  </div>
+</header>
+
+<main class="wrap">
+  
+  <section class="panel" aria-live="polite">
+    <div class="stepper" id="stepper"></div>
+    <div id="view"></div>
+  </section>
+
+</main>
+
+<footer id="help">
+  <div class="wrap">
+    <span>&copy; Northwind Advisory Group</span>
+  </div>
+</footer>
+
+<script id="portal-config" type="application/json">{"flow": {"label": "Service", "question": "What Would You Like To Do?", "options": [{"id": "tax", "title": "Tax", "desc": "Share supporting documents and access completed business and personal tax returns.", "icon": "receipt", "promo_short": "Proactive tax planning that keeps more of your income working for you.", "promo": "Let our tax team prepare your business and personal returns and plan ahead to reduce what you owe.", "promo_points": ["Business and personal returns", "Year-round tax planning", "Notices and correspondence handled for you"], "next": {"label": "Type", "question": "Is This for Business or Personal Tax?", "options": [{"id": "business", "title": "Business Tax", "desc": "For a company, partnership or other entity", "icon": "building", "next": {"label": "Action", "question": "Choose an Option", "options": [{"id": "upload", "title": "Upload Documents", "desc": "Send us the files we asked you for", "icon": "upload", "dest": "docsUpload"}, {"id": "download", "title": "Download Your Deliverables", "desc": "Open the finished work our team has prepared for you", "icon": "download", "dest": "docsDownload"}]}}, {"id": "personal", "title": "Personal Tax", "desc": "For you and your household", "icon": "user", "next": {"label": "Action", "question": "Choose an Option", "options": [{"id": "upload", "title": "Upload Documents", "desc": "Send us the files we asked you for", "icon": "upload", "dest": "safesendUpload"}, {"id": "download", "title": "Download Your Deliverables", "desc": "Open the finished work our team has prepared for you", "icon": "download", "dest": "docsDownload"}]}}]}}, {"id": "cas", "title": "CAS", "display": "Client Accounting Services", "aliases": ["Client Accounting Services", "Accounting"], "desc": "Access your accounting workspace to share financial records, review reports, and respond to requests from our team.", "icon": "chart", "promo_short": "Accurate monthly financials, so you can focus on running your business.", "promo": "Hand over your bookkeeping and get accurate monthly financials and clear reporting.", "promo_points": ["Monthly bookkeeping and reconciliations", "Financial statements and reporting", "Payroll and advisory support"], "next": {"label": "Action", "question": "Choose an Option", "options": [{"id": "upload", "title": "Upload Documents", "desc": "Send us the files we asked you for", "icon": "upload", "dest": "doubleApp"}, {"id": "download", "title": "Download Your Deliverables", "desc": "Open the finished work our team has prepared for you", "icon": "download", "dest": "docsDownload"}]}}, {"id": "audit", "title": "Audit", "aliases": ["Audit & Assurance", "Assurance"], "desc": "Share requested records and access documents related to your audit, review, or assurance engagement.", "icon": "shield", "promo_short": "Independent assurance that builds confidence with lenders and investors.", "promo": "Independent audit, review and assurance work that lenders, investors and regulators trust.", "promo_points": ["Financial statement audits and reviews", "Agreed-upon procedures", "Internal control assessments"], "next": {"label": "Action", "question": "Choose an Option", "options": [{"id": "upload", "title": "Upload Documents", "desc": "Send us the files we asked you for", "icon": "upload", "dest": "docsUpload"}, {"id": "download", "title": "Download Your Deliverables", "desc": "Open the finished work our team has prepared for you", "icon": "download", "dest": "docsDownload"}]}}, {"id": "iwm", "title": "Insurance & Wealth Management", "aliases": ["Insurance and Wealth Management", "Wealth Management", "Insurance", "IWM"], "desc": "Access documents and resources related to your insurance, retirement, and wealth planning needs.", "icon": "heart", "promo_short": "Protect what matters most and plan for long-term financial security.", "promo": "Plan for the future with insurance and wealth advice that fits your goals.", "promo_points": ["Life, health and business insurance review", "Retirement and investment planning", "Estate and succession planning"], "next": {"label": "Action", "question": "Choose an Option", "options": [{"id": "upload", "title": "Upload Documents", "desc": "Send us the files we asked you for", "icon": "upload", "dest": "docsUpload"}, {"id": "download", "title": "Download Your Deliverables", "desc": "Open the finished work our team has prepared for you", "icon": "download", "dest": "docsDownload"}]}}, {"id": "sut", "title": "Sales & Use Tax", "aliases": ["Sales and Use Tax", "Sales Tax", "SUT"], "desc": "Share supporting records and access documents related to your sales and use tax filings, compliance, and audit support.", "icon": "calc", "promo_short": "Stay compliant across every state you sell in, with filings handled for you.", "promo": "We register, calculate and file your sales and use tax so you stay compliant in every state you sell in.", "promo_points": ["Nexus review and registrations", "Monthly and quarterly filings", "Notices and audit support"], "next": {"label": "Action", "question": "Choose an Option", "options": [{"id": "upload", "title": "Upload Documents", "desc": "Send us the files we asked you for", "icon": "upload", "dest": "docsUpload"}, {"id": "download", "title": "Download Your Deliverables", "desc": "Open the finished work our team has prepared for you", "icon": "download", "dest": "docsDownload"}]}}]}, "destinations": {"docsUpload": {"type": "sharepoint_upload", "platform": "Upload", "stepLabel": "Upload", "title": "Upload Your Documents", "lead": "Click the button below to open your own secure folder. There you can upload your documents and share them safely with our team.", "cta": "Open My Upload Folder", "vaultKey": null}, "docsDownload": {"type": "sharepoint_download", "platform": "Deliverables", "stepLabel": "Download", "title": "Download Your Deliverables", "lead": "Click the button below to open your own secure folder. There you can view and download the deliverables our team has prepared for you.", "cta": "Open My Deliverables", "vaultKey": null}, "safesendUpload": {"type": "external", "platform": "Secure tax portal", "login_name": "tax portal", "icon": "user", "title": "Upload Your Personal Tax Documents", "lead": "Personal tax documents are collected through our dedicated tax portal. You'll be taken there to sign in and upload your documents safely and securely.", "url": "https://example.com/tax-portal", "vault": true, "vault_key": "safesend", "auto_signin": false, "launcher_url": "", "cta": "Continue to tax portal", "vaultKey": "safesend"}, "doubleApp": {"type": "external", "platform": "Accounting portal", "login_name": "accounting portal", "icon": "chart", "title": "Your Accounting Portal", "lead": "You'll be taken to our secure accounting portal, where our Client Accounting Services team keeps your books accurate and up to date. Here you can:", "about": ["Send us receipts, statements and other documents we request", "Download reports and documents we share with you", "Answer our questions about your transactions", "See what is still needed from you"], "url": "https://example.com/accounting-portal", "vault": true, "vault_key": "double", "auto_signin": false, "launcher_url": "", "cta": "Continue to accounting portal", "vaultKey": "double"}}, "myServices": ["audit", "sut", "tax"], "upload": {"max_file_mb": 250, "blocked_extensions": [".exe", ".bat", ".cmd", ".com", ".js", ".vbs", ".ps1", ".msi", ".scr"]}, "extension": {"chrome": "https://chromewebstore.google.com/detail/ggjhpefgjjfobnfoldnjipclpcfbgbhl", "edge": "https://microsoftedge.microsoft.com/addons/detail/gaaceiggkkiffbfdpmfapegoiohkiipl"}, "vaultEnabled": true, "user": {"name": "Tina Test", "email": "tina@testing.com"}, "myClients": [{"folder": "T/Testing", "name": "Testing", "services": ["Tax", "Audit", "Sales & Use Tax"]}], "myTeam": []}</script>
+<script src="static/demo/mock-api.js"></script>
+<script>TWDemo.prepareClient();</script>
+<script src="static/portal.js"></script>
+
+<script src="static/vendor/liquid-glass.min.js"></script><script src="static/glass.js"></script>
+</body>
+</html>

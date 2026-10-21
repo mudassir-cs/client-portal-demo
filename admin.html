@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Admin · Client Portal (Demo)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="static/style.css">
+<link rel="stylesheet" href="static/glass.css">
+<link rel="stylesheet" href="static/demo/demo.css">
+</head>
+<body class="glass">
+<div class="demo-bar" role="navigation" aria-label="Demo">
+  <span class="demo-tag">Front-end demo</span>
+  <div class="demo-seg"><a href="index.html" class="">Client Portal</a><a href="admin.html" class="on">Admin Portal</a></div>
+  <button type="button" id="demoReset" class="demo-reset">Reset demo data</button>
+</div>
+
+<header class="top ">
+  <div class="lg-scene" aria-hidden="true"></div>
+  <div class="wrap bar">
+    <a class="logo" href="admin.html" aria-label="Northwind Advisory Group, Client Portal home">
+      
+      <b>Northwind</b><small>ADVISORY GROUP</small>
+    </a>
+    <nav aria-label="Header">
+      
+        
+        <span class="user-chip">
+          <span class="avatar" aria-hidden="true">P</span>
+          <span class="nm">Portal Admin<small>admin@northwind-demo.com</small></span>
+        </span>
+        <a class="signout" href="signin.html">Sign out</a>
+      
+    </nav>
+  </div>
+  <div class="wrap hero">
+    
+  <div class="hero-card">
+  <p class="kicker">Admin</p>
+  <h1>Client Portal Admin</h1>
+  <p class="sub">Add clients, manage their services and review requests.</p>
+  </div>
+
+  </div>
+</header>
+
+<main class="wrap">
+  
+<section class="panel adm adm8">
+  <div class="tabs" role="tablist" aria-label="Admin sections">
+    <button role="tab" id="tab-clients" aria-controls="pane-clients" aria-selected="true">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="4"/><path d="M2 21c1.2-3.6 4-5.5 7-5.5s5.8 1.9 7 5.5"/><path d="M19 8v6M16 11h6"/></svg>Add Client</button>
+    <button role="tab" id="tab-existing" aria-controls="pane-existing" aria-selected="false">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7a2 2 0 012-2h4l2 2h8a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2V7z"/><path d="M12 11v5M9.5 13.5h5"/></svg>Existing Client</button>
+    <button role="tab" id="tab-services" aria-controls="pane-services" aria-selected="false">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>Client Services</button>
+    <button role="tab" id="tab-requests" aria-controls="pane-requests" aria-selected="false">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16v12H8l-4 4V4z"/><path d="M9 10h6"/></svg>Requests<span class="tab-count" id="reqCount" hidden></span></button>
+    <button role="tab" id="tab-remove" aria-controls="pane-remove" aria-selected="false">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="4"/><path d="M2 21c1.2-3.6 4-5.5 7-5.5s5.8 1.9 7 5.5"/><path d="M16 11h6"/></svg>Remove Access</button>
+    <button role="tab" id="tab-docs" aria-controls="pane-docs" aria-selected="false">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H6a1 1 0 00-1 1v16a1 1 0 001 1h12a1 1 0 001-1V8l-5-5z"/><path d="M14 3v5h5M9 17l2-2 4 1"/></svg>Engagement Letters</button>
+    <button role="tab" id="tab-activity" aria-controls="pane-activity" aria-selected="false">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Activity</button>
+  </div>
+  <div id="pane-clients" role="tabpanel" aria-labelledby="tab-clients"></div>
+  <div id="pane-existing" role="tabpanel" aria-labelledby="tab-existing" hidden></div>
+  <div id="pane-services" role="tabpanel" aria-labelledby="tab-services" hidden></div>
+  <div id="pane-requests" role="tabpanel" aria-labelledby="tab-requests" hidden></div>
+  <div id="pane-remove" role="tabpanel" aria-labelledby="tab-remove" hidden></div>
+  <div id="pane-docs" role="tabpanel" aria-labelledby="tab-docs" hidden></div>
+  <div id="pane-activity" role="tabpanel" aria-labelledby="tab-activity" hidden></div>
+</section>
+
+</main>
+
+<footer id="help">
+  <div class="wrap">
+    <span>&copy; Northwind Advisory Group</span>
+  </div>
+</footer>
+
+<script id="admin-config" type="application/json">{"services": [{"id": "tax", "title": "Tax", "folder": "Tax", "upload": true}, {"id": "cas", "title": "CAS", "folder": "CAS", "upload": false}, {"id": "audit", "title": "Audit", "folder": "Audit", "upload": true}, {"id": "iwm", "title": "Insurance & Wealth Management", "folder": "Insurance & Wealth Management", "upload": true}, {"id": "sut", "title": "Sales & Use Tax", "folder": "Sales & Use Tax", "upload": true}], "dochub": true, "uploadName": "Upload", "downloadName": "Download", "storage": "SharePoint"}</script>
+<script src="static/demo/mock-api.js"></script>
+<script src="static/admin.js"></script>
+
+<script src="static/vendor/liquid-glass.min.js"></script><script src="static/glass.js"></script>
+</body>
+</html>

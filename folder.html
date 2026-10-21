@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Secure Folder · Demo</title>
+<style>
+  *{box-sizing:border-box}body{margin:0;font-family:"Segoe UI",system-ui,sans-serif;background:#faf9f8;color:#323130}
+  .sp-top{background:#036c70;color:#fff;padding:12px 24px;display:flex;align-items:center;gap:14px;font-weight:600}
+  .sp-top small{opacity:.8;font-weight:400}
+  .note{background:#fff4ce;border-bottom:1px solid #f1dc9c;padding:10px 24px;font-size:14px}
+  main{max-width:1000px;margin:0 auto;padding:22px 24px}
+  .crumbs{font-size:20px;margin:0 0 16px}.crumbs span{color:#605e5c}
+  .bar{display:flex;gap:8px;margin-bottom:12px}
+  .bar label,.bar button{display:inline-flex;align-items:center;gap:6px;background:#fff;border:1px solid #c8c6c4;border-radius:4px;padding:7px 12px;font:inherit;cursor:pointer}
+  .bar label:hover{background:#f3f2f1}.bar input{display:none}
+  table{width:100%;border-collapse:collapse;background:#fff;border:1px solid #edebe9}
+  th,td{text-align:left;padding:10px 12px;border-bottom:1px solid #edebe9;font-size:14px}th{color:#605e5c;font-weight:600}
+  .drop{border:2px dashed #c8c6c4;border-radius:6px;padding:26px;text-align:center;color:#605e5c;margin-top:14px;background:#fff}
+  .drop.on{border-color:#036c70;background:#e6f4f4}
+</style>
+</head>
+<body>
+<div class="sp-top">▣ SharePoint <small>· client folders (demo)</small></div>
+<div class="note">Demo page. In the real portal this opens the client's own secure SharePoint folder. Files you add here stay in this browser only.</div>
+<main>
+  <h1 class="crumbs" id="crumbs"></h1>
+  <div class="bar"><label>⤒ Upload<input type="file" id="pick" multiple></label></div>
+  <table><thead><tr><th>Name</th><th>Modified</th><th>Size</th></tr></thead><tbody id="rows"></tbody></table>
+  <div class="drop" id="drop">Drag files here to upload</div>
+</main>
+<script>
+  const path = new URLSearchParams(location.search).get("p") || "Documents", KEY = "tw-demo-files:" + path;
+  document.getElementById("crumbs").innerHTML = path.split("/").map((p, i, a) => i === a.length - 1 ? p : `<span>${p} ›</span> `).join("");
+  const load = () => { try { return JSON.parse(localStorage.getItem(KEY)) || []; } catch (e) { return []; } };
+  function draw() {
+    const files = load();
+    document.getElementById("rows").innerHTML = files.length ? files.map(f => `<tr><td>📄 ${f.name}</td><td>${f.when}</td><td>${f.size}</td></tr>`).join("")
+      : `<tr><td colspan="3" style="color:#605e5c">This folder is empty.</td></tr>`;
+  }
+  function add(list) {
+    const files = load();
+    [...list].forEach(f => files.unshift({ name: f.name, when: new Date().toLocaleString(), size: (f.size / 1024).toFixed(0) + " KB" }));
+    try { localStorage.setItem(KEY, JSON.stringify(files)); } catch (e) {}
+    draw();
+  }
+  document.getElementById("pick").onchange = e => add(e.target.files);
+  const d = document.getElementById("drop");
+  d.ondragover = e => { e.preventDefault(); d.classList.add("on"); };
+  d.ondragleave = () => d.classList.remove("on");
+  d.ondrop = e => { e.preventDefault(); d.classList.remove("on"); add(e.dataTransfer.files); };
+  draw();
+</script>
+</body>
+</html>

@@ -1,0 +1,102 @@
+/* Client Portal - "Glass" look (experiment, v3).
+   Loaded on top of style.css only when the glass theme is on (?theme=glass, or PORTAL_THEME=glass in .env).
+   Real liquid glass (refraction, not blur) comes from liquid-glass-js (MIT, static/vendor) via glass.js, and is
+   used on the controls that float over the dark header. Content stays on crisp solid surfaces. No backdrop blur. */
+:root{
+  --ink:#2E2118; --ink-2:#6E5A49; --line:#ECE4DA;
+  --cream:#F5F1EB; --paper:#FFFFFF;
+  --shadow:0 1px 1px rgba(46,33,24,.04),0 2px 6px rgba(46,33,24,.04),0 12px 32px -8px rgba(46,33,24,.10);
+  --shadow-h:0 1px 1px rgba(46,33,24,.05),0 6px 14px rgba(46,33,24,.06),0 22px 44px -12px rgba(46,33,24,.18);
+}
+body.glass{background:var(--cream)}
+
+/* ---------- header: deep teak with one soft light, frosted controls on top ---------- */
+.glass .top{background:
+  radial-gradient(900px 420px at 85% -10%,rgba(214,168,118,.35) 0%,rgba(214,168,118,0) 60%),
+  linear-gradient(135deg,#24170F 0%,#3B271A 45%,#6A4A31 100%)}
+.glass .top::after{display:none}
+.glass .hero h1{font-weight:300;letter-spacing:-.025em}
+.glass .hero h1 b{font-weight:500}
+.glass .hero p.kicker{letter-spacing:.18em;opacity:.6}
+.glass .hero p.sub{opacity:.78}
+
+.glass .hero-btn,.glass .signout,.glass .user-chip{
+  background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);color:#fff;position:relative;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.14);
+  transition:background .2s,border-color .2s}
+.glass .hero-btn:hover,.glass .signout:hover{background:rgba(255,255,255,.16);border-color:rgba(255,255,255,.28)}
+.glass .user-chip{border-radius:999px;padding:4px 12px 4px 4px}
+
+/* ---------- content: solid, quiet, precise ---------- */
+.glass .panel{background:#fff;border:0;border-radius:28px;box-shadow:var(--shadow),inset 0 0 0 1px rgba(46,33,24,.05)}
+.glass .card{background:#fff;border:1px solid var(--line);border-radius:20px;box-shadow:none;
+  transition:transform .25s cubic-bezier(.2,.7,.2,1),box-shadow .25s,border-color .25s}
+.glass .card:hover{transform:translateY(-3px);box-shadow:var(--shadow-h);border-color:transparent}
+.glass .card .ic{background:#F6EFE6;color:#5A3F2B}
+.glass .side,.glass .a-card,.glass .rq,.glass .st,.glass .cs-detail,.glass .ex2-row,.glass .uf-pick,.glass .uf-opt,.glass .dec{
+  border-color:var(--line);box-shadow:none}
+.glass .eyebrow{background:#F6EFE6}
+.glass .eyebrow .pl{background:#fff;box-shadow:0 1px 2px rgba(46,33,24,.08)}
+
+/* buttons: one solid main colour, soft neutral secondary */
+.glass .cta{background:#4A3324;border:0;box-shadow:0 1px 2px rgba(46,33,24,.18),0 8px 20px -8px rgba(74,51,36,.55);
+  transition:background .2s,transform .2s,box-shadow .2s}
+.glass .cta:hover{background:#5C4130;transform:translateY(-1px)}
+.glass .cta:active{transform:none}
+.glass .cta.danger{background:#9E3627}
+.glass .navbtn,.glass .btn2,.glass .chipbtn,.glass .vbtn{background:#F3EDE5;border:1px solid transparent;box-shadow:none}
+.glass .navbtn:hover,.glass .btn2:hover,.glass .chipbtn:hover,.glass .vbtn:hover{background:#ECE3D8}
+
+/* inputs */
+.glass input:not([type=checkbox]):not([type=radio]),.glass select,.glass textarea{border-color:#E4DACE;border-radius:12px;background:#FCFAF7}
+.glass input:focus,.glass select:focus,.glass textarea:focus{background:#fff;border-color:#B48A63;outline:3px solid rgba(180,138,99,.18);outline-offset:0}
+
+/* admin tabs: segmented control */
+.glass .adm8 .tabs{background:#F3EDE5;border:0;border-radius:16px;padding:4px;gap:2px}
+.glass .adm8 .tabs button{border-radius:12px;border-bottom:0!important}
+.glass .adm8 .tabs button:hover{background:rgba(255,255,255,.6)}
+.glass .adm8 .tabs button[aria-selected="true"]{background:#fff;box-shadow:0 1px 2px rgba(46,33,24,.08),0 2px 8px rgba(46,33,24,.06)}
+
+/* pop-ups: the only other place glass is used */
+.glass .modal-back,.glass .am-back{background:rgba(30,20,13,.42)}
+.glass .modal,.glass .am{background:#fff;border:0;border-radius:24px;box-shadow:0 30px 80px -20px rgba(30,20,13,.45)}
+
+/* ---------- look switcher (only shown while trying the theme) ---------- */
+.theme-pick{position:fixed;right:16px;bottom:16px;z-index:400;display:flex;gap:2px;padding:4px;border-radius:999px;
+  background:rgba(36,23,15,.72);
+  box-shadow:0 10px 30px -10px rgba(0,0,0,.45);font:600 13px/1 "Source Sans 3",system-ui,sans-serif}
+.theme-pick a{padding:8px 14px;border-radius:999px;color:rgba(255,255,255,.75);text-decoration:none}
+.theme-pick a.on{background:#fff;color:#2E2118}
+.glass .search input,.glass .uf-find input{background:transparent!important;border:0!important;outline:none!important}
+.glass .search{background:#FCFAF7;border-color:#E4DACE}
+
+/* ---------- real liquid glass (liquid-glass-js, MIT) on the header controls ---------- */
+/* The header picture the glass bends: deep teak, two warm lights and fine diagonal lines. */
+.glass .top{background:#24170F}
+.lg-scene{position:absolute;inset:0;pointer-events:none;
+  background:
+    radial-gradient(620px 320px at 82% -6%,rgba(236,184,122,.5) 0%,rgba(236,184,122,0) 70%),
+    radial-gradient(520px 280px at 12% 96%,rgba(205,145,92,.28) 0%,rgba(205,145,92,0) 70%),
+    repeating-linear-gradient(115deg,rgba(255,255,255,.075) 0 1px,rgba(255,255,255,0) 1px 13px),
+    linear-gradient(135deg,#24170F 0%,#3B271A 45%,#6A4A31 100%)}
+/* once a lens sits behind a control, the control itself turns clear */
+.glass .lg-on{background:transparent!important;border-color:transparent!important;box-shadow:none!important}
+.lqg-glass{pointer-events:none!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.35),inset 0 0 0 1px rgba(255,255,255,.14),0 8px 22px -8px rgba(0,0,0,.55)!important}
+.glass .signin.lg-on{color:#fff}
+/* glass card lines up with the white panel below: same left edge, same inner padding */
+.glass .hero-landing.lg-on,.glass .hero-card.lg-on{padding:28px 40px;margin:0;display:inline-block;max-width:100%}
+.glass .hero-landing.lg-on{padding:34px 40px}
+@media (max-width:719px){.glass .hero-landing.lg-on,.glass .hero-card.lg-on{padding:24px 28px;display:block}}
+.glass .vbtn{background:#fff;border:2px solid #4A3324}
+.glass .vbtn:hover{background:#FBF7F2}
+.glass .vbtn.on{border:1.5px solid #BFD9C6}
+
+/* readable text on the glass: darker tint (glass.js), crisp light text with a soft shadow */
+.glass .hero-btn.lg-on,.glass .signout.lg-on,.glass .user-chip.lg-on,.glass .signin.lg-on{color:#fff;text-shadow:0 1px 2px rgba(0,0,0,.55)}
+.glass .hero-btn.lg-on svg,.glass .signout.lg-on svg{filter:drop-shadow(0 1px 1px rgba(0,0,0,.5))}
+.glass .hero-card.lg-on,.glass .hero-landing.lg-on{text-shadow:0 1px 3px rgba(0,0,0,.35)}
+/* keep the header text above the glass layer, so the tint sits behind the words, not on top of them */
+.glass .bar,.glass .hero{z-index:3}
+.glass .hero{pointer-events:none}
+.glass .hero>*{pointer-events:auto}
